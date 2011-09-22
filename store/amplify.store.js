@@ -34,6 +34,11 @@ store.addType = function( type, storage ) {
 store.error = function() {
 	return "amplify.store quota exceeded"; 
 };
+store.remove = function( key ) {
+  var value = store( key );
+  store( key, null );
+  return value;
+};
 
 var rprefix = /^__amplify__/;
 function createFromStorageInterface( storageType, storage ) {

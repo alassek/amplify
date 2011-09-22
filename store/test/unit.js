@@ -355,3 +355,17 @@ asyncTest( "memory expiration", function() {
 		start();
 	}, 1250 );
 });
+
+module( "amplify.store.remove", {
+  setup: function () {
+    amplify.store( "foo", null );
+  }
+});
+
+test( "remove", function () {
+  expect( 3 );
+  amplify.store( "foo", { foo: "bar" } );
+  deepEqual( amplify.store( "foo" ), { foo: "bar" } );
+  deepEqual( amplify.store.remove( "foo" ), { foo: "bar" } );
+  equal( amplify.store( "foo" ), undefined );
+});
